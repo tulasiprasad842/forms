@@ -1,0 +1,18 @@
+<form [formGroup]="logForm" (ngsubmit)="onSubmit">
+    <div>
+        <input placeholder="firstname" formControlName="firstName" minlength="5" maxlength="10" required>
+        <div *ngIf="logForm.controls.firstName.errors?.required"></div>
+        <div *ngIf="logForm.controls.firstName.minlength"></div>
+    </div>
+    <div>
+        <input placeholder="lastname" formControlName="lastName" required>
+        <div *ngIf="logForm.controls.lastName.errors?.required"></div>
+    </div>
+    <div>
+        <input placeholder="mobileno" formControlName="mobileNo" minlength="10" maxlength="15" required numbersOnly>
+        <div *ngIf="logForm.controls.mobileNo.errors?.required"></div>
+        <div *ngIf="logForm.controls.mobileNo.minlength || logForm.controls.mobileNo.errors?.maxlength">required 10 digits only</div>
+        <div *ngIf="logForm.controls.mobileNo.pattern">Number Must be Digits Only</div>
+    </div>
+</form>
+       <button [disabled]="!logForm.valid" (click)="onSubmit()">login</button>
